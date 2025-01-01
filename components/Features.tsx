@@ -107,7 +107,7 @@ export default function Features() {
     };
 
     return (
-        <section className="py-20 bg-green-900/10">
+        <section className="py-20 bg-green-900/10" id="features">
             <div className="container mx-auto px-4">
                 <h2 className="text-xl font-bold text-zinc-300 text-center mb-12">{`> KEY_FEATURES`}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

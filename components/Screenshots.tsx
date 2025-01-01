@@ -40,7 +40,7 @@ const screenshots = [
 
 export default function Screenshots() {
     return (
-        <section className="py-20 bg-green-900/10">
+        <section className="py-20 bg-green-900/10" id="preview">
             <div className="container mx-auto px-4">
                 <h2 className="text-xl font-bold text-zinc-300 text-center mb-4">{`> PREVIEW_MODE`}</h2>
                 <p className="text-sm text-zinc-500 text-center mb-12 max-w-2xl mx-auto">

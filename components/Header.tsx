@@ -6,6 +6,12 @@ import { FilloutEmbed } from './FilloutEmbed';
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
+    const href = (item: string) => {
+        if (item === 'CONTACT') {
+            return `mailto:ananthkvmohanan@gmail.com`;
+        }
+        return `#${item.toLowerCase()}`;
+    };
     return (
         <header className="py-8 mb-12">
             <div className="container mx-auto">
@@ -15,10 +21,10 @@ export default function Header() {
                         <span className="text-sm tracking-wider">[staybase]</span>
                     </div>
                     <nav className="hidden md:flex items-center space-x-8">
-                        {['HOME', 'FEATURES', 'ABOUT', 'CONTACT'].map((item) => (
+                        {['HOME', 'FEATURES', 'PREVIEW', 'CONTACT'].map((item) => (
                             <a
                                 key={item}
-                                href="#"
+                                href={href(item)}
                                 className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors tracking-wider"
                             >
                                 {item}

@@ -2,15 +2,24 @@
 
 import { useState } from "react"
 import { FilloutEmbed } from "./FilloutEmbed";
+import { Space_Mono } from "next/font/google";
+
+
+const spaceMono = Space_Mono({
+    weight: ['400', '700'],
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-space-mono',
+})
 
 export default function Hero() {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <section className="min-h-[100dvh] flex items-center justify-center bg-green-900/10">
+        <section className="min-h-[100dvh] flex items-center justify-center bg-green-900/10" id="home">
             <div className="container mx-auto px-4 py-20">
-                <div className="ascii-art mb-8 text-zinc-500 text-xs leading-none md:text-center text-left">
-                    <pre className="inline-block md:text-center text-left">
+                <div className="ascii-art mb-8 text-zinc-500 text-xs  leading-none text-center">
+                    <pre className="inline-block text-center">
                         {`
    _____ _             _                    
   / ____| |           | |                   
@@ -23,7 +32,7 @@ export default function Hero() {
             `}
                     </pre>
                 </div>
-                <h1 className="text-2xl md:text-4xl text-zinc-300 mb-6 md:text-center text-left">
+                <h1 className="text-xl md:text-4xl text-zinc-300 mb-6 md:text-center text-left">
                     {'> RETAIN_CUSTOMERS.exe'}
                 </h1>
                 <p className="text-sm md:text-base text-zinc-500 mb-8 max-w-2xl mx-auto md:text-center text-left">
