@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     openGraph: {
         type: 'website',
         locale: 'en_US',
-        url: 'https://staybase.io',
+        url: 'https://staybase.tech',
         siteName: 'Staybase',
         title: 'Staybase - Revolutionize Your Customer Retention',
         description: 'AI-powered customer retention platform for e-commerce businesses. Retain customers, grow revenue.',
         images: [
             {
-                url: 'https://staybase.io/og-image.png',
+                url: '/opengraph-image.png',
                 width: 1200,
                 height: 630,
                 alt: 'Staybase - AI-Powered Customer Retention',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'Staybase - AI-Powered Customer Retention',
         description: 'Revolutionize your e-commerce customer retention with AI-powered insights and automated campaigns.',
-        images: ['https://staybase.io/twitter-image.png'],
+        images: ['https://staybase.tech/opengraph-image.png'],
         creator: '@staybase',
     },
     robots: {
@@ -53,7 +53,6 @@ export const metadata: Metadata = {
     verification: {
         google: 'your-google-site-verification-code',
         yandex: 'your-yandex-verification-code',
-        bing: 'your-bing-verification-code',
     },
 }
 
