@@ -8,48 +8,8 @@ import Script from 'next/script'
 import Screenshots from '@/components/Screenshots'
 
 export const metadata: Metadata = {
-    title: 'Staybase - AI-Powered Customer Retention Platform',
-    description: 'Staybase helps e-commerce businesses monitor, analyze, and improve customer retention through AI-powered insights and automated campaigns.',
-    keywords: ['customer retention', 'e-commerce', 'AI', 'analytics', 'Shopify integration'],
-    authors: [{ name: 'Staybase Team' }],
-    openGraph: {
-        type: 'website',
-        locale: 'en_US',
-        url: 'https://staybase.tech',
-        siteName: 'Staybase',
-        title: 'Staybase - Revolutionize Your Customer Retention',
-        description: 'AI-powered customer retention platform for e-commerce businesses. Retain customers, grow revenue.',
-        images: [
-            {
-                url: '/opengraph-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'Staybase - AI-Powered Customer Retention',
-            },
-        ],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Staybase - AI-Powered Customer Retention',
-        description: 'Revolutionize your e-commerce customer retention with AI-powered insights and automated campaigns.',
-        images: ['https://staybase.tech/opengraph-image.png'],
-        creator: '@staybase',
-    },
-    robots: {
-        index: true,
-        follow: true,
-        googleBot: {
-            index: true,
-            follow: true,
-            'max-video-preview': -1,
-            'max-image-preview': 'large',
-            'max-snippet': -1,
-        },
-    },
-    verification: {
-        google: 'your-google-site-verification-code',
-        yandex: 'your-yandex-verification-code',
-    },
+    title: 'Staybase - Home | AI-Powered Customer Retention',
+    description: 'Discover how Staybase can revolutionize your e-commerce customer retention with AI-powered insights and automated campaigns.',
 }
 
 export default function Home() {

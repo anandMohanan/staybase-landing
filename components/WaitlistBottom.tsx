@@ -1,21 +1,10 @@
 "use client"
 
-import { useToast } from "@/hooks/use-toast"
 import { useState } from "react"
+import { FilloutEmbed } from "./FilloutEmbed";
 
 export default function WaitlistBottom() {
-    const [email, setEmail] = useState("")
-    const { toast } = useToast()
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        console.log("Submitted email:", email)
-        toast({
-            title: "> ACCESS_GRANTED",
-            description: "You've been added to the waitlist. Standby for further instructions.",
-        })
-        setEmail("")
-    }
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <section className="py-20 border-t border-zinc-800">
@@ -25,20 +14,12 @@ export default function WaitlistBottom() {
                     Be among the first to access Staybase and revolutionize your customer retention strategy.
                     Enter your email to secure your spot in the waitlist.
                 </p>
-                <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
-                    <input
-                        type="email"
-                        placeholder="enter_email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className="bg-zinc-900 text-zinc-300 border border-zinc-700 px-4 py-2 focus:outline-none focus:border-zinc-500 flex-grow"
-                        aria-label="Email address"
-                    />
-                    <button type="submit" className="bg-zinc-800 text-zinc-300 px-6 py-2 hover:bg-zinc-700 transition-colors">
+                <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
+                    <button className="bg-zinc-800 text-zinc-300 px-6 py-2 hover:bg-zinc-700 transition-colors" onClick={() => setIsOpen(true)}>
                         {'> SUBMIT'}
                     </button>
-                </form>
+                    {isOpen && <FilloutEmbed onClose={() => setIsOpen(false)} />}
+                </div>
                 <p className="text-xs text-zinc-600 mt-4">Join {Math.floor(Math.random() * 900) + 100} others on the waitlist</p>
             </div>
         </section>

@@ -1,21 +1,10 @@
 "use client"
 
-import { useToast } from "@/hooks/use-toast"
 import { useState } from "react"
+import { FilloutEmbed } from "./FilloutEmbed";
 
 export default function Hero() {
-    const [email, setEmail] = useState("")
-    const { toast } = useToast()
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        console.log("Submitted email:", email)
-        toast({
-            title: "> ACCESS_GRANTED",
-            description: "You've been added to the waitlist. Standby for further instructions.",
-        })
-        setEmail("")
-    }
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <section className="min-h-[100dvh] flex items-center justify-center bg-green-900/10">
@@ -41,22 +30,12 @@ export default function Hero() {
                     Staybase: AI-powered customer retention platform for e-commerce.
                     Monitor. Analyze. Improve. Execute.
                 </p>
-                <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
-                    <label htmlFor="email" className="sr-only">Email address</label>
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="enter_email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className="bg-zinc-900 text-zinc-300 border border-zinc-700 px-4 py-2 focus:outline-none focus:border-zinc-500"
-                        aria-label="Email address"
-                    />
-                    <button type="submit" className="bg-zinc-800 text-zinc-300 px-6 py-2 hover:bg-zinc-700 transition-colors">
-                        {'> SUBMIT'}
+                <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
+                    <button onClick={() => setIsOpen(true)} className="bg-zinc-800 text-zinc-300 px-6 py-2 hover:bg-zinc-700 transition-colors">
+                        {'> JOIN_WAITLIST'}
                     </button>
-                </form>
+                    {isOpen && <FilloutEmbed onClose={() => setIsOpen(false)} />}
+                </div>
             </div>
         </section>
     )
