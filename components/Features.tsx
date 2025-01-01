@@ -117,7 +117,7 @@ export default function Features() {
                                 <div
                                     className={`border ${activeFeature === index ? 'border-green-500' : 'border-zinc-800'} p-4 cursor-pointer transition-colors duration-300`}
                                     onClick={() => handleFeatureClick(index)}
-                                    onMouseEnter={() => handleFeatureClick(index)}
+                                    onMouseEnter={() => setActiveFeature(index)}
                                 >
                                     <div className="flex items-center space-x-3">
                                         <feature.icon className="w-6 h-6 text-green-500" />
