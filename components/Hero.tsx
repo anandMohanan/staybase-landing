@@ -26,7 +26,7 @@ export default function Hero() {
                 <h1 className="text-2xl md:text-4xl text-zinc-300 mb-6 md:text-center text-left">
                     {'> RETAIN_CUSTOMERS.exe'}
                 </h1>
-                <p className="text-sm md:text-base text-zinc-500 mb-8 max-w-2xl mx-auto">
+                <p className="text-sm md:text-base text-zinc-500 mb-8 max-w-2xl mx-auto md:text-center text-left">
                     Staybase: AI-powered customer retention platform for e-commerce.
                     Monitor. Analyze. Improve. Execute.
                 </p>
