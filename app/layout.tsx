@@ -3,6 +3,7 @@ import { Space_Mono } from 'next/font/google'
 import { Toaster } from "@/components/ui/toaster"
 import Script from 'next/script'
 import './globals.css'
+import { CSPostHogProvider } from '@/provider/posthog-provider'
 
 const spaceMono = Space_Mono({
     weight: ['400', '700'],
@@ -63,6 +64,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
+        <CSPostHogProvider>
             <body className={`${spaceMono.variable} font-mono`}>
                 {children}
                 <Toaster />
@@ -76,6 +78,7 @@ export default function RootLayout({
           `}
                 </Script>
             </body>
+            </CSPostHogProvider>
         </html>
     )
 }
