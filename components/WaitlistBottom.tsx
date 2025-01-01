@@ -20,7 +20,6 @@ export default function WaitlistBottom() {
                     </button>
                     {isOpen && <FilloutEmbed onClose={() => setIsOpen(false)} />}
                 </div>
-                <p className="text-xs text-zinc-600 mt-4">Join {Math.floor(Math.random() * 900) + 100} others on the waitlist</p>
             </div>
         </section>
     )
