@@ -1,32 +1,10 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import { FilloutEmbed } from "./FilloutEmbed";
 
 export default function WaitlistBottom() {
     const [isOpen, setIsOpen] = useState(false);
-    const [waitlistCount, setWaitlistCount] = useState(0);
-
-
-    useEffect(() => {
-        const fetchWaitlistCount = async () => {
-            try {
-                const response = await fetch("/api/waitlist-count")
-
-                if (!response.ok) {
-                    throw new Error('Failed to fetch waitlist count')
-                }
-
-                const data = await response.json()
-                setWaitlistCount(data.totalResponses)
-            } catch (err) {
-                console.error('Error fetching waitlist count:', err)
-            } finally {
-            }
-        }
-
-        fetchWaitlistCount()
-    }, [])
 
 
 
@@ -45,7 +23,6 @@ export default function WaitlistBottom() {
                     {isOpen && <FilloutEmbed onClose={() => setIsOpen(false)} />}
                 </div>
                 <p className="text-sm text-zinc-500 mb-8 max-w-2xl mx-auto mt-8">
-                    {waitlistCount} people have already joined the waitlist.
                 </p>
             </div>
         </section>
