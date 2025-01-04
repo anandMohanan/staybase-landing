@@ -36,7 +36,7 @@ export default function Hero() {
                     {'> RETAIN_CUSTOMERS.exe'}
                 </h1>
                 <p className="text-sm md:text-base text-zinc-500 mb-8 max-w-2xl mx-auto md:text-center text-left">
-                    Staybase: AI-powered customer retention platform for e-commerce.
+                    AI-powered customer retention platform for e-commerce.
                     Monitor. Analyze. Improve. Execute.
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto">
