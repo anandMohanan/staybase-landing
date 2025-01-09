@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Terms() {
   return (
-    <div className="min-h-screen bg-zinc-950 font-mono text-zinc-400 py-20">
+    <div className="min-h-screen bg-zinc-950 text-zinc-400 py-20">
       <div className="container mx-auto px-4">
         <h1 className="text-2xl md:text-4xl text-zinc-300 mb-8">{`> TERMS_OF_SERVICE.md`}</h1>
         <div className="space-y-6 text-sm">

@@ -1,25 +1,18 @@
 "use client"
 
 import { useState } from "react"
-import { Space_Mono } from 'next/font/google'
 import Image from 'next/image'
 
-const spaceMono = Space_Mono({
-    weight: ['400', '700'],
-    subsets: ['latin'],
-    display: 'swap',
-    variable: '--font-space-mono',
-})
 
 export default function Hero() {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <section className={`min-h-[100dvh] flex items-center justify-center bg-green-900/10 ${spaceMono.variable}`} id="home">
+        <section className={`min-h-[100dvh] flex items-center justify-center bg-green-900/10 `} id="home">
             <div className="container mx-auto px-4 py-20">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-12">
                     <div className="flex flex-col w-full md:w-1/2 lg:w-2/5">
-                        <div className="ascii-art text-zinc-500 text-xs leading-none text-left mb-6">
+                        <div className="ascii-art text-green-500 text-xs leading-none text-left mb-6">
                             <pre className="inline-block text-left">
                                 {`
    _____ _             _                    
@@ -42,8 +35,8 @@ export default function Hero() {
                                 Monitor. Analyze. Improve. Execute.
                             </p>
                             <div className="flex flex-col sm:flex-row justify-start gap-4">
-                                <button 
-                                    onClick={() => setIsOpen(true)} 
+                                <button
+                                    onClick={() => setIsOpen(true)}
                                     className="bg-zinc-800 text-zinc-300 px-6 py-2 hover:bg-zinc-700 transition-colors font-semibold"
                                 >
                                     {'> JOIN_WAITLIST'}
@@ -57,8 +50,7 @@ export default function Hero() {
                             <Image
                                 src="/oilpainting.jpg"
                                 alt="An oil painting representing customer retention and growth"
-                                layout="fill"
-                                objectFit="cover"
+                                fill={true}
                                 className="rounded-lg shadow-lg"
                             />
                         </div>

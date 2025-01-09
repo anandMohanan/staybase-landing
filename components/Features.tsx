@@ -121,7 +121,7 @@ export default function Features() {
                                 >
                                     <div className="flex items-center space-x-3">
                                         <feature.icon className="w-6 h-6 text-green-500" />
-                                        <h3 className="text-sm font-semibold text-zinc-300">{feature.title}</h3>
+                                        <h3 className="text-sm text-zinc-300 italic">{feature.title}</h3>
                                     </div>
                                     <p className="text-xs text-zinc-500 mt-2">{feature.description}</p>
                                 </div>
@@ -129,7 +129,7 @@ export default function Features() {
                                 {/* Mobile expanded view */}
                                 {isMobile && expandedFeature === index && (
                                     <div className="border border-zinc-800 p-4 mt-2 bg-zinc-900/50">
-                                        <pre className="text-green-400 mb-4 font-mono text-xs whitespace-pre">
+                                        <pre className="text-green-400 mb-4 text-xs whitespace-pre">
                                             {feature.ascii}
                                         </pre>
                                         <div className="text-green-400 text-xl mb-4">{feature.title}</div>
@@ -144,10 +144,10 @@ export default function Features() {
                     {!isMobile && (
                         <div className="border border-zinc-800 p-6 h-full flex flex-col justify-center bg-zinc-900/50">
                             <h4 className="text-sm font-semibold text-zinc-300 mb-4">{`> FEATURE_HIGHLIGHT`}</h4>
-                            <pre className="text-green-400 mb-4 font-mono text-xs whitespace-pre">
+                            <pre className="text-green-400 mb-4 text-xs whitespace-pre">
                                 {features[activeFeature].ascii}
                             </pre>
-                            <div className="text-green-400 text-2xl mb-4">{features[activeFeature].title}</div>
+                            <div className="text-green-400 text-2xl mb-4 italic">{features[activeFeature].title}</div>
                             <p className="text-zinc-400 mb-4">{features[activeFeature].detail}</p>
                         </div>
                     )}

@@ -1,16 +1,18 @@
 import type { Metadata } from 'next'
-import { Space_Mono } from 'next/font/google'
 import { Toaster } from "@/components/ui/toaster"
 import Script from 'next/script'
 import './globals.css'
 import { CSPostHogProvider } from '@/provider/posthog-provider'
+import { Victor_Mono } from "next/font/google"
 
-const spaceMono = Space_Mono({
-    weight: ['400', '700'],
+
+const font = Victor_Mono({
     subsets: ['latin'],
+    weight: ['400'],
     display: 'swap',
-    variable: '--font-space-mono',
+    fallback: ['Helvetica', 'Arial', 'sans-serif'],
 })
+
 
 export const metadata: Metadata = {
     title: 'Staybase - AI-Powered Customer Retention Platform',
@@ -64,20 +66,20 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-        <CSPostHogProvider>
-            <body className={`${spaceMono.variable} font-mono`}>
-                {children}
-                <Toaster />
-                <Script src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" strategy="afterInteractive" />
-                <Script id="google-analytics" strategy="afterInteractive">
-                    {`
+            <CSPostHogProvider>
+                <body className={`${font.className}`}>
+                    {children}
+                    <Toaster />
+                    <Script src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" strategy="afterInteractive" />
+                    <Script id="google-analytics" strategy="afterInteractive">
+                        {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-XXXXXXXXXX');
           `}
-                </Script>
-            </body>
+                    </Script>
+                </body>
             </CSPostHogProvider>
         </html>
     )

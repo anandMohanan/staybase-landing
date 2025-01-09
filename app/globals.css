@@ -88,3 +88,19 @@ body {
     opacity: 0.8;
   }
 }
+
+
+:root {
+  --highlight-color: #22c55e; /* This is the green-500 color from Tailwind */
+}
+
+::selection {
+  background-color: var(--highlight-color);
+  color: #ffffff;
+}
+
+/* Optional: Style for Firefox */
+::-moz-selection {
+  background-color: var(--highlight-color);
+  color: #ffffff;
+}
