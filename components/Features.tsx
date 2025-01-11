@@ -49,6 +49,8 @@ const features = [
         description: "Detailed profiles, history, segmentation.",
         detail: "Segment your customers into 20+ pre-built categories or create custom segments using our powerful rules engine. Each profile includes purchase history, risk factors, engagement scores, and AI-powered recommendations for personalized retention strategies.",
         ascii: `
+
+
    _O_  _O_
   /|\\  /|\\
   / \\  / \\
@@ -87,15 +89,13 @@ export default function Features() {
     const [isMobile, setIsMobile] = useState(false);
     const [expandedFeature, setExpandedFeature] = useState(null);
 
-    // Handle window resize
     useEffect(() => {
         const checkMobile = () => {
-            setIsMobile(window.innerWidth < 768); // md breakpoint
+            setIsMobile(window.innerWidth < 768);
         };
 
         checkMobile();
         window.addEventListener('resize', checkMobile);
-
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
@@ -107,52 +107,83 @@ export default function Features() {
     };
 
     return (
-        <section className="py-20 bg-green-900/10" id="features">
-            <div className="container mx-auto px-4">
-                <h2 className="text-xl font-bold text-zinc-300 text-center mb-12">{`> KEY_FEATURES`}</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-4">
-                        {features.map((feature, index) => (
-                            <div key={index} className="relative">
-                                <div
-                                    className={`border ${activeFeature === index ? 'border-green-500' : 'border-zinc-800'} p-4 cursor-pointer transition-colors duration-300`}
-                                    onClick={() => handleFeatureClick(index)}
-                                    onMouseEnter={() => setActiveFeature(index)}
-                                >
-                                    <div className="flex items-center space-x-3">
-                                        <feature.icon className="w-6 h-6 text-green-500" />
-                                        <h3 className="text-sm text-zinc-300 italic">{feature.title}</h3>
+        <div className="relative">
+            <div className="absolute -top-10 left-0">
+                <div className="text-sm text-green-500/80 ">{'> explore_features'}</div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Feature List - Takes up 2 columns on desktop */}
+                <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {features.map((feature, index) => (
+                        <div
+                            key={index}
+                            className={`group relative overflow-hidden rounded-lg border ${activeFeature === index ? 'border-green-500/50 bg-green-500/5' : 'border-zinc-800 bg-zinc-900/20'
+                                } transition-all duration-300 hover:border-green-500/30 hover:bg-green-500/[0.02]`}
+                        >
+                            <div
+                                className="p-6 cursor-pointer h-full"
+                                onClick={() => handleFeatureClick(index)}
+                                onMouseEnter={() => !isMobile && setActiveFeature(index)}
+                            >
+                                <div className="flex items-start space-x-4">
+                                    <div className="p-2 rounded-md bg-zinc-900 border border-zinc-800 group-hover:border-green-500/20 transition-colors">
+                                        <feature.icon className="w-5 h-5 text-green-500" />
                                     </div>
-                                    <p className="text-xs text-zinc-500 mt-2">{feature.description}</p>
+                                    <div className="flex-1 min-w-0">
+                                        <h3 className="text-sm font-medium text-zinc-200 font-mono mb-1">
+                                            {feature.title}
+                                        </h3>
+                                        <p className="text-xs text-zinc-400">
+                                            {feature.description}
+                                        </p>
+                                    </div>
                                 </div>
 
-                                {/* Mobile expanded view */}
+                                {/* Mobile Expanded View */}
                                 {isMobile && expandedFeature === index && (
-                                    <div className="border border-zinc-800 p-4 mt-2 bg-zinc-900/50">
-                                        <pre className="text-green-400 mb-4 text-xs whitespace-pre">
+                                    <div className="mt-4 pt-4 border-t border-zinc-800">
+                                        <pre className="text-green-400 mb-4 text-xs whitespace-pre font-mono">
                                             {feature.ascii}
                                         </pre>
-                                        <div className="text-green-400 text-xl mb-4">{feature.title}</div>
-                                        <p className="text-zinc-400 text-sm">{feature.detail}</p>
+                                        <p className="text-sm text-zinc-300">{feature.detail}</p>
                                     </div>
                                 )}
                             </div>
-                        ))}
-                    </div>
-
-                    {/* Desktop feature highlight - only shown on non-mobile */}
-                    {!isMobile && (
-                        <div className="border border-zinc-800 p-6 h-full flex flex-col justify-center bg-zinc-900/50">
-                            <h4 className="text-sm font-semibold text-zinc-300 mb-4">{`> FEATURE_HIGHLIGHT`}</h4>
-                            <pre className="text-green-400 mb-4 text-xs whitespace-pre">
-                                {features[activeFeature].ascii}
-                            </pre>
-                            <div className="text-green-400 text-2xl mb-4 italic">{features[activeFeature].title}</div>
-                            <p className="text-zinc-400 mb-4">{features[activeFeature].detail}</p>
                         </div>
-                    )}
+                    ))}
                 </div>
+
+                {/* Feature Details - Takes up 1 column on desktop */}
+                {!isMobile && (
+                    <div className="hidden lg:block lg:col-span-1">
+                        <div className="sticky top-8">
+                            <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm overflow-hidden">
+                                <div className="p-6">
+                                    <div className="flex items-center space-x-2 mb-6">
+                                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                                        <h4 className="text-sm font-medium text-zinc-200 font-mono">
+                                            {`> FEATURE_DETAILS`}
+                                        </h4>
+                                    </div>
+
+                                    <pre className="text-green-400 mb-6 text-xs whitespace-pre font-mono bg-zinc-900/50 p-4 rounded-md border border-zinc-800">
+                                        {features[activeFeature].ascii}
+                                    </pre>
+
+                                    <h3 className="text-lg font-medium text-green-500 font-mono mb-4">
+                                        {features[activeFeature].title}
+                                    </h3>
+
+                                    <p className="text-sm leading-relaxed text-zinc-300">
+                                        {features[activeFeature].detail}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
-        </section>
+        </div>
     )
 }
