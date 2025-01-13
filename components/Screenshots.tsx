@@ -2,6 +2,9 @@
 
 import * as React from "react"
 import Image from "next/image"
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import useEmblaCarousel from "embla-carousel-react"
+import { useCallback, useEffect, useState } from "react"
 import {
     Carousel,
     CarouselContent,
@@ -39,8 +42,39 @@ const screenshots = [
 ]
 
 export default function Screenshots() {
+    const [emblaRef, emblaApi] = useEmblaCarousel({
+        align: 'start',
+        containScroll: 'trimSnaps'
+    })
+    const [selectedIndex, setSelectedIndex] = useState(0)
+    const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
+
+    const scrollTo = useCallback(
+        (index: number) => emblaApi && emblaApi.scrollTo(index),
+        [emblaApi]
+    )
+
+    const onSelect = useCallback(() => {
+        if (!emblaApi) return
+        setSelectedIndex(emblaApi.selectedScrollSnap())
+    }, [emblaApi, setSelectedIndex])
+
+    useEffect(() => {
+        if (!emblaApi) return
+
+        onSelect()
+        setScrollSnaps(emblaApi.scrollSnapList())
+        emblaApi.on("select", onSelect)
+        emblaApi.on("reInit", onSelect)
+
+        return () => {
+            emblaApi.off("select", onSelect)
+            emblaApi.off("reInit", onSelect)
+        }
+    }, [emblaApi, onSelect])
+
     return (
-        <div className="relative">
+        <div className="relative px-4 md:px-0">
             <div className="absolute -top-4 left-0">
                 <div className="text-xs text-green-500/80">{'> preview_interface'}</div>
             </div>
@@ -73,14 +107,14 @@ export default function Screenshots() {
                 </div>
 
                 {/* Carousel Section */}
-                <div className="relative">
-                    <div className="absolute -left-4 top-1/2 -translate-y-1/2 w-24 h-full bg-gradient-to-r from-zinc-950 to-transparent z-10"></div>
-                    <div className="absolute -right-4 top-1/2 -translate-y-1/2 w-24 h-full bg-gradient-to-l from-zinc-950 to-transparent z-10"></div>
+                <div className="relative overflow-hidden">
+                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-24 h-full bg-gradient-to-r from-zinc-950 to-transparent z-10"></div>
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-24 h-full bg-gradient-to-l from-zinc-950 to-transparent z-10"></div>
                     
-                    <Carousel className="w-full">
-                        <CarouselContent className="-ml-2 md:-ml-4">
+                    <Carousel ref={emblaRef} className="w-full">
+                        <CarouselContent>
                             {screenshots.map((screenshot, index) => (
-                                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-2/3 lg:basis-1/2">
+                                <CarouselItem key={index} className="pr-4 md:basis-2/3 lg:basis-1/2">
                                     <Card className="border border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm overflow-hidden">
                                         <CardContent className="p-0">
                                             <div className="relative aspect-[16/9] overflow-hidden">
@@ -111,9 +145,27 @@ export default function Screenshots() {
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
-                        <CarouselPrevious className="border border-zinc-800 bg-zinc-900/80 text-zinc-400 hover:bg-zinc-800/80 hover:text-zinc-200 backdrop-blur-sm" />
-                        <CarouselNext className="border border-zinc-800 bg-zinc-900/80 text-zinc-400 hover:bg-zinc-800/80 hover:text-zinc-200 backdrop-blur-sm" />
+                        <CarouselPrevious className="hidden md:flex left-0 md:-left-12 border border-zinc-800 bg-zinc-900/80 text-zinc-400 hover:bg-zinc-800/80 hover:text-zinc-200 backdrop-blur-sm">
+                            <ChevronLeft className="h-4 w-4" />
+                        </CarouselPrevious>
+                        <CarouselNext className="hidden md:flex right-0 md:-right-12 border border-zinc-800 bg-zinc-900/80 text-zinc-400 hover:bg-zinc-800/80 hover:text-zinc-200 backdrop-blur-sm">
+                            <ChevronRight className="h-4 w-4" />
+                        </CarouselNext>
                     </Carousel>
+
+                    {/* Mobile Indicator */}
+                    <div className="flex justify-center mt-4 md:hidden">
+                        {scrollSnaps.map((_, index) => (
+                            <button
+                                key={index}
+                                className={`w-2 h-2 rounded-full mx-1 transition-colors duration-300 ${
+                                    index === selectedIndex ? 'bg-green-500' : 'bg-zinc-600'
+                                }`}
+                                aria-label={`Go to slide ${index + 1}`}
+                                onClick={() => scrollTo(index)}
+                            />
+                        ))}
+                    </div>
                 </div>
 
                 {/* Bottom Section */}
@@ -128,3 +180,5 @@ export default function Screenshots() {
         </div>
     )
 }
+
+
