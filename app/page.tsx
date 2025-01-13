@@ -15,55 +15,67 @@ export const metadata: Metadata = {
 export default function Home() {
     return (
         <div className="min-h-screen bg-zinc-950 text-zinc-400">
-            {/* Background Pattern */}
+            {/* Base Background Pattern */}
             <div className="fixed inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiMxMTExMTEiIGQ9Ik0wIDBoNDB2NDBIMHoiLz48cGF0aCBmaWxsPSIjMjIyMjIyIiBkPSJNMCAwaDJ2MkgweiIvPjwvZz48L3N2Zz4=')] opacity-30 pointer-events-none"></div>
+            
+            {/* Grid Overlay */}
+            <div className="fixed inset-0 pointer-events-none">
+                {/* Vertical lines */}
+                <div className="absolute inset-0 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
+                    {[...Array(6)].map((_, i) => (
+                        <div key={i} className="border-zinc-800/20">
+                            <div className="h-full border-l border-zinc-800/20"></div>
+                        </div>
+                    ))}
+                </div>
+                
+                {/* Horizontal lines */}
+                <div className="absolute inset-0 grid grid-rows-[repeat(20,minmax(0,1fr))]">
+                    {[...Array(20)].map((_, i) => (
+                        <div key={i} className="border-t border-zinc-800/20"></div>
+                    ))}
+                </div>
+            </div>
             
             {/* Main Content */}
             <div className="relative">
-                {/* Header Section - Full Width */}
-                <div className="border-b border-zinc-800">
-                    <div className="max-w-[1400px] mx-auto">
-                        <Header />
-                    </div>
-                </div>
+                {/* Header */}
+                <Header />
 
-                {/* Hero Section - Wide Container */}
-                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 py-24">
-                        <Hero />
-                    </div>
-                </div>
+                {/* Main sections with consistent max-width and padding */}
+                <div className="pt-24">
+                    {/* Hero Section */}
+                    <section className="py-16 sm:py-20">
+                        <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                                <Hero />
+                            </div>
+                        </div>
+                    </section>
 
-                {/* Features Section - Full Width Background */}
-                <div className="bg-green-900/10 border-y border-zinc-800">
-                    <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-24">
-                        <div className="grid grid-cols-1 gap-12">
+                    {/* Features Section */}
+                    <section className="py-16 sm:py-20 bg-green-900/10 border-y border-zinc-800">
+                        <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
                             <Features />
                         </div>
-                    </div>
-                </div>
+                    </section>
 
-                {/* Screenshots Section - Wide Container */}
-                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-24">
-                    <div className="grid grid-cols-1 gap-12">
-                        <Screenshots />
-                    </div>
-                </div>
+                    {/* Screenshots Section */}
+                    <section className="py-16 sm:py-20">
+                        <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
+                            <Screenshots />
+                        </div>
+                    </section>
 
-                {/* Waitlist Section - Full Width Background */}
-                <div className="bg-green-900/10 border-y border-zinc-800">
-                    <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-24">
-                        <div className="grid grid-cols-1 gap-12">
+                    {/* Waitlist Bottom Section */}
+                    <section className="py-16 sm:py-20 bg-green-900/10 border-y border-zinc-800">
+                        <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12">
                             <WaitlistBottom />
                         </div>
-                    </div>
-                </div>
+                    </section>
 
-                {/* Footer Section - Full Width */}
-                <div className="border-t border-zinc-800">
-                    <div className="max-w-[1400px] mx-auto">
-                        <Footer />
-                    </div>
+                    {/* Footer */}
+                    <Footer />
                 </div>
             </div>
 
@@ -93,5 +105,3 @@ export default function Home() {
         </div>
     )
 }
-
-
